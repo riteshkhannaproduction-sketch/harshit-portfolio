@@ -11,14 +11,14 @@ export default function AdminDashboard() {
   useEffect(() => {
     const fetchMessages = async () => {
       const token = localStorage.getItem('adminToken');
-      
+
       if (!token) {
         router.push('/admin/login');
         return;
       }
 
       try {
-        const res = await fetch('http://localhost:5000/api/admin/messages', {
+        const res = await fetch('https://backend-shreya.vercel.app/api/admin/messages', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -31,7 +31,7 @@ export default function AdminDashboard() {
         }
 
         const data = await res.json();
-        
+
         if (res.ok) {
           setMessages(data);
         } else {
@@ -98,7 +98,7 @@ export default function AdminDashboard() {
               {messages.length} Messages
             </span>
           </div>
-          
+
           {error && (
             <div className="p-4 bg-red-50 text-red-700 border-b border-red-200">
               {error}
