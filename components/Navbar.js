@@ -65,9 +65,9 @@ export default function Navbar() {
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
-            <span className={`block w-6 h-0.5 bg-black transition-all duration-300 origin-center ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
-            <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${mobileOpen ? 'opacity-0 scale-x-0' : ''}`} />
-            <span className={`block w-6 h-0.5 bg-black transition-all duration-300 origin-center ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+            <span className={`block w-6 h-0.5 transition-all duration-300 origin-center ${mobileOpen ? 'rotate-45 translate-y-2 bg-white' : 'bg-black'}`} />
+            <span className={`block w-6 h-0.5 transition-all duration-300 ${mobileOpen ? 'opacity-0 scale-x-0 bg-white' : 'bg-black'}`} />
+            <span className={`block w-6 h-0.5 transition-all duration-300 origin-center ${mobileOpen ? '-rotate-45 -translate-y-2 bg-white' : 'bg-black'}`} />
           </button>
         </div>
       </nav>

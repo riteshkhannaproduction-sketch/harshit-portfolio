@@ -10,20 +10,79 @@ export default function HeroSection() {
         background: 'linear-gradient(170deg, #D8E830 0%, #E8F23A 30%, #F5F89A 65%, #FAFDE8 100%)',
       }}
     >
-      {/* ─────────────────────────────────────────────────────────
-          LAYER 0 — HUGE NAME  (behind photo on BOTH breakpoints)
+      {/* ==========================================================
+          MOBILE + TABLET LAYOUT  (hidden on lg+ / 1024px+)
+          Clean stacked: Name → Photo → Tagline
+      ========================================================== */}
+      <div
+        className="lg:hidden flex flex-col items-center w-full"
+        style={{ minHeight: '100svh' }}
+      >
+        {/* Name — at the top, large */}
+        <div className="w-full overflow-hidden pt-20 pb-1 px-2">
+          <h1
+            style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: 'clamp(44px, 12.5vw, 96px)',
+              fontWeight: 900,
+              lineHeight: 1,
+              letterSpacing: '0.04em',
+              whiteSpace: 'nowrap',
+              color: '#0A0A0A',
+              userSelect: 'none',
+              textAlign: 'center',
+              width: '100%',
+            }}
+          >
+            HARSHIT<span style={{ opacity: 0.7 }}>©</span>
+          </h1>
+        </div>
 
-          Mobile:  top-[40%]  — pushes name to chest/shoulder area
-          Desktop: md:top-[22%] — keeps name in the upper zone
-      ───────────────────────────────────────────────────────── */}
-      <div className="absolute inset-x-0 z-0 overflow-hidden top-[15%] md:top-[22%]">
+        {/* Photo — centred, fills remaining space */}
+        <div
+          className="relative mx-auto"
+          style={{
+            width: '60vw',
+            maxWidth: '420px',
+            flex: '1 1 0',
+            minHeight: '0',
+          }}
+        >
+          <Image
+            src="/images/Adobe Express - file.png"
+            alt="Harshit Kaul"
+            fill
+            priority
+            sizes="(max-width: 1023px) 60vw, 420px"
+            className="object-contain object-bottom"
+          />
+        </div>
+
+        {/* Tagline — at the bottom */}
+        <div className="w-full px-5 pb-14 pt-2">
+          <p
+            style={{
+              fontSize: '0.78rem',
+              lineHeight: 1.6,
+              color: 'rgba(0,0,0,0.55)',
+              fontWeight: 500,
+            }}
+          >
+            Senior Manager @ HPCL · B.Tech CS, IIIT Hyderabad · JEE Advanced & GATE Qualified
+          </p>
+        </div>
+      </div>
+
+      {/* ==========================================================
+          DESKTOP LAYOUT  (hidden below lg / 1024px)
+          Absolute-layered Baskara-style — unchanged
+      ========================================================== */}
+
+      {/* HUGE NAME — behind photo */}
+      <div className="hidden lg:block absolute inset-x-0 z-0 overflow-hidden top-[22%]">
         <h1
           style={{
             fontFamily: "'Space Grotesk', sans-serif",
-            /*
-              Mobile:  13vw × 390px ≈ 51px  → bumped up by clamp min
-              Desktop: 14.8vw × 1440px ≈ 213px
-            */
             fontSize: 'clamp(48px, 14.8vw, 220px)',
             fontWeight: 900,
             lineHeight: 1,
@@ -39,58 +98,36 @@ export default function HeroSection() {
         </h1>
       </div>
 
-      {/* ─────────────────────────────────────────────────────────
-          LAYER 1 — PHOTO  (centred, on top of name)
-
-          Mobile:  80vw wide, anchored to top-[12%]
-                   → face appears ~20% into the photo ≈ 16% from top
-                   → name at 40% is in the shoulder/chest zone  ✓
-
-          Desktop: 36vw wide, anchored to bottom-0
-                   → fills almost the full screen height
-      ───────────────────────────────────────────────────────── */}
+      {/* Photo — bottom-anchored */}
       <div
-        className={[
-          'absolute left-1/2 -translate-x-1/2 z-10',
-          // ── mobile: narrower = shorter, stays clear of bottom tagline ──
-          'top-[24%] w-[66vw]',
-          // ── desktop: bottom-anchored, overlaps name like Baskara ──
-          'md:top-auto md:bottom-0 md:w-[38vw]',
-        ].join(' ')}
+        className="hidden lg:block absolute left-1/2 -translate-x-1/2 z-10 bottom-0 w-[38vw]"
         style={{ maxWidth: '500px', maxHeight: 'calc(100svh - 200px)' }}
       >
-        {/* Fixed aspect ratio so the portrait stays consistent */}
         <div className="relative w-full" style={{ aspectRatio: '3 / 4.1' }}>
           <Image
             src="/images/Adobe Express - file.png"
             alt="Harshit Kaul"
             fill
             priority
-            sizes="(max-width: 640px) 80vw, (max-width: 1024px) 38vw, 500px"
+            sizes="(max-width: 1280px) 38vw, 500px"
             className="object-cover object-top"
             style={{ mixBlendMode: 'multiply' }}
           />
         </div>
       </div>
 
-      {/* ─────────────────────────────────────────────────────────
-          LAYER 2 — bottom fade
-      ───────────────────────────────────────────────────────── */}
+      {/* Bottom fade */}
       <div
-        className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none"
+        className="hidden lg:block absolute bottom-0 left-0 right-0 z-20 pointer-events-none"
         style={{
           height: '120px',
           background: 'linear-gradient(to top, rgba(250,253,232,0.9) 0%, transparent 100%)',
         }}
       />
 
-      {/* ─────────────────────────────────────────────────────────
-          LAYER 3 — Taglines
-      ───────────────────────────────────────────────────────── */}
-
-      {/* Desktop left */}
+      {/* Desktop tagline — left */}
       <div
-        className="hidden md:block absolute z-30 pointer-events-none"
+        className="hidden lg:block absolute z-30 pointer-events-none"
         style={{ left: '2.5rem', bottom: '5rem', maxWidth: '190px' }}
       >
         <p style={{ fontSize: '0.78rem', lineHeight: 1.55, color: 'rgba(0,0,0,0.6)', fontWeight: 500 }}>
@@ -98,9 +135,9 @@ export default function HeroSection() {
         </p>
       </div>
 
-      {/* Desktop right */}
+      {/* Desktop tagline — right */}
       <div
-        className="hidden md:block absolute z-30 pointer-events-none text-right"
+        className="hidden lg:block absolute z-30 pointer-events-none text-right"
         style={{ right: '2.5rem', bottom: '5rem', maxWidth: '190px' }}
       >
         <p style={{ fontSize: '0.78rem', lineHeight: 1.55, color: 'rgba(0,0,0,0.6)', fontWeight: 500 }}>
@@ -108,19 +145,13 @@ export default function HeroSection() {
         </p>
       </div>
 
-      {/* Mobile — two-line tagline, left-aligned like Baskara */}
-      <div
-        className="md:hidden absolute z-30 inset-x-0 px-5"
-        style={{ bottom: '3.5rem' }}
-      >
-        <p style={{ fontSize: '0.72rem', lineHeight: 1.6, color: 'rgba(0,0,0,0.55)', fontWeight: 500 }}>
-          Senior Manager @ HPCL · B.Tech CS, IIIT Hyderabad · JEE Advanced & GATE Qualified
-        </p>
-      </div>
+      {/* Decorative dots — desktop only */}
+      <div className="hidden lg:block absolute top-1/3 right-8 w-3 h-3 rounded-full bg-black opacity-10 z-0" />
+      <div className="hidden lg:block absolute top-1/2 right-14 w-2 h-2 rounded-full bg-black opacity-10 z-0" />
 
-      {/* ─────────────────────────────────────────────────────────
-          Copyright + Scroll hint
-      ───────────────────────────────────────────────────────── */}
+      {/* ==========================================================
+          Copyright + Scroll hint  (both breakpoints, always visible)
+      ========================================================== */}
       <div
         className="absolute bottom-5 left-5 right-5 flex justify-between items-center z-30"
         style={{ fontSize: '0.7rem', color: 'rgba(0,0,0,0.4)', fontWeight: 500 }}
@@ -133,10 +164,6 @@ export default function HeroSection() {
           </svg>
         </span>
       </div>
-
-      {/* Decorative dots */}
-      <div className="absolute top-1/3 right-8 w-3 h-3 rounded-full bg-black opacity-10 z-0" />
-      <div className="absolute top-1/2 right-14 w-2 h-2 rounded-full bg-black opacity-10 z-0" />
     </section>
   )
 }
