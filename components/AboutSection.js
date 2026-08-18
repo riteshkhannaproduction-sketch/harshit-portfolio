@@ -56,7 +56,7 @@ export default function AboutSection() {
             {/* Bio */}
             <div className="space-y-3 sm:space-y-4">
               <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
-                Hello, I'm Harshit Kaul — born on 19th September 1998. A Computer Science graduate from
+                Hello, I'm Harshit Kaul — born on 19th September. A Computer Science graduate from
                 <strong> IIIT Hyderabad (B.Tech, 2022)</strong>, where I cracked JEE Advanced 2018 after
                 scoring <strong>95% in Class X</strong> and <strong>90% in Class XII</strong> from
                 Hiranandani Foundation School.
